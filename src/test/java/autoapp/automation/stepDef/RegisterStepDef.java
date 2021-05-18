@@ -3,6 +3,7 @@ package autoapp.automation.stepDef;
 import autoapp.automation.pages.PersonalInfoPage;
 import autoapp.automation.pages.RegisterPage;
 import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -31,6 +32,12 @@ public class RegisterStepDef {
     @Then("^I should be able to register with my below details$")
     public void i_should_be_able_to_register_with_my_below_details(DataTable dataTable) throws Throwable {
         PersonalInfoPage.enterPersonalInformation(dataTable);
+        Thread.sleep(5000);
+    }
+
+    @Then("^I should get error message as \"([^\"]*)\"$")
+    public void iShouldGetErrorMessageAs(String emailAddError) throws Throwable {
+        RegisterPage.validateInvalidEmailAddress(emailAddError);
         Thread.sleep(5000);
     }
 }

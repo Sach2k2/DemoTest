@@ -7,3 +7,14 @@ Feature: Registering to automation practice
     Then I should be able to register with my below details
       | Gender | FirstName | LastName  | Password  | Address            | City      | State  | Zip  | Mobile     |
       | Mr     | TestFName | TestLName | Password1 | 100 Spencer Street | Anchorage | Alaska | 30000 | 0406345454 |
+
+  Scenario Outline: Validate Invalid Email Address
+    Given Automation practice application is opened
+    When I click sign in
+    And I create account with emailid "<emailId>"
+    Then I should get error message as "Invalid email address."
+    Examples:
+      | emailId                    |
+      | testRandom                 |
+      | testRandom@testrandom..com |
+
